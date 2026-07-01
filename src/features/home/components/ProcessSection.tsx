@@ -4,6 +4,7 @@ import { SectionHeader } from '@/components/ui/SectionHeader'
 import { PillButton } from '@/components/ui/PillButton'
 import { Reveal } from '@/components/ui/Reveal'
 import { EASE } from '@/lib/animations'
+import { isLowEndDevice } from '@/lib/deviceCapability'
 import { useBooking } from '@/context/BookingContext'
 
 const steps = [
@@ -45,9 +46,8 @@ export function ProcessSection() {
                   <motion.div
                     className="relative h-full rounded-2xl p-7 border border-gray-100 cursor-default overflow-hidden"
                     style={{
-                      background: 'rgba(255,255,255,0.6)',
-                      backdropFilter: 'blur(24px) saturate(180%)',
-                      WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+                      background: isLowEndDevice ? 'rgba(255,255,255,0.94)' : 'rgba(255,255,255,0.6)',
+                      ...(isLowEndDevice ? {} : { backdropFilter: 'blur(24px) saturate(180%)', WebkitBackdropFilter: 'blur(24px) saturate(180%)' }),
                       boxShadow: '0 2px 16px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.9)',
                     }}
                     whileHover={{
@@ -87,9 +87,8 @@ export function ProcessSection() {
           <div
             className="flex flex-col sm:flex-row items-center justify-between gap-5 rounded-2xl p-7 border border-gray-100"
             style={{
-              background: 'rgba(255,255,255,0.55)',
-              backdropFilter: 'blur(20px) saturate(180%)',
-              WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+              background: isLowEndDevice ? 'rgba(255,255,255,0.94)' : 'rgba(255,255,255,0.55)',
+              ...(isLowEndDevice ? {} : { backdropFilter: 'blur(20px) saturate(180%)', WebkitBackdropFilter: 'blur(20px) saturate(180%)' }),
               boxShadow: '0 2px 20px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.9)',
             }}
           >

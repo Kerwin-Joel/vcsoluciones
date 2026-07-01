@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Asterisk } from 'lucide-react'
 import { useReveal } from '@/hooks/useReveal'
 import { EASE } from '@/lib/animations'
+import { adaptiveBlur } from '@/lib/deviceCapability'
 
 interface Props {
   label?: string
@@ -22,10 +23,10 @@ function WordReveal({ text, delay = 0, triggered }: { text: string; delay?: numb
         >
           <motion.span
             style={{ display: 'inline-block', color: 'inherit' }}
-            initial={{ y: '110%', opacity: 0, filter: 'blur(10px)' }}
+            initial={{ y: '110%', opacity: 0, filter: adaptiveBlur(10) }}
             animate={triggered
-              ? { y: 0, opacity: 1, filter: 'blur(0px)', transition: { duration: 0.6, delay: delay + i * 0.075, ease: EASE } }
-              : { y: '110%', opacity: 0, filter: 'blur(10px)' }
+              ? { y: 0, opacity: 1, filter: adaptiveBlur(0), transition: { duration: 0.6, delay: delay + i * 0.075, ease: EASE } }
+              : { y: '110%', opacity: 0, filter: adaptiveBlur(10) }
             }
           >
             {word}
@@ -48,10 +49,10 @@ export function SectionHeader({ label, title, subtitle, centered = true, light =
             border: light ? '1px solid rgba(255,255,255,0.18)' : '1px solid #d1d5db',
             background: light ? 'rgba(255,255,255,0.06)' : '#fff',
           }}
-          initial={{ opacity: 0, y: 12, filter: 'blur(6px)' }}
+          initial={{ opacity: 0, y: 12, filter: adaptiveBlur(6) }}
           animate={triggered
-            ? { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.45, ease: EASE } }
-            : { opacity: 0, y: 12, filter: 'blur(6px)' }
+            ? { opacity: 1, y: 0, filter: adaptiveBlur(0), transition: { duration: 0.45, ease: EASE } }
+            : { opacity: 0, y: 12, filter: adaptiveBlur(6) }
           }
         >
           <Asterisk
@@ -79,10 +80,10 @@ export function SectionHeader({ label, title, subtitle, centered = true, light =
         <motion.p
           className={`mt-5 text-base leading-relaxed max-w-2xl ${centered ? 'mx-auto' : ''}`}
           style={{ color: light ? 'rgba(255,255,255,0.52)' : '#6b7280' }}
-          initial={{ opacity: 0, y: 16, filter: 'blur(7px)' }}
+          initial={{ opacity: 0, y: 16, filter: adaptiveBlur(7) }}
           animate={triggered
-            ? { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.55, delay: 0.22, ease: EASE } }
-            : { opacity: 0, y: 16, filter: 'blur(7px)' }
+            ? { opacity: 1, y: 0, filter: adaptiveBlur(0), transition: { duration: 0.55, delay: 0.22, ease: EASE } }
+            : { opacity: 0, y: 16, filter: adaptiveBlur(7) }
           }
         >
           {subtitle}

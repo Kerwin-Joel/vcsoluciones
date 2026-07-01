@@ -5,6 +5,7 @@ import { CTASection } from '@/features/home/components/CTASection'
 import { Reveal } from '@/components/ui/Reveal'
 import { useBooking } from '@/context/BookingContext'
 import { staggerContainer, staggerItem, fadeLeft, fadeRight, EASE } from '@/lib/animations'
+import { isLowEndDevice } from '@/lib/deviceCapability'
 import { Seo } from '@/components/Seo'
 
 const FOUNDER_PHOTO =
@@ -119,9 +120,8 @@ export default function AboutPage() {
                   <motion.div
                     className="rounded-2xl p-4"
                     style={{
-                      background: 'rgba(255,255,255,0.1)',
-                      backdropFilter: 'blur(20px)',
-                      WebkitBackdropFilter: 'blur(20px)',
+                      background: isLowEndDevice ? 'rgba(20,25,35,0.72)' : 'rgba(255,255,255,0.1)',
+                      ...(isLowEndDevice ? {} : { backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }),
                       border: '1px solid rgba(255,255,255,0.18)',
                     }}
                     initial={{ opacity: 0, y: 16 }}

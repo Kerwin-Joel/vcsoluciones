@@ -2,6 +2,7 @@ import { motion, useInView } from 'framer-motion'
 import { useRef, useEffect, useState, type HTMLAttributes } from 'react'
 import { usePageReady } from '@/context/PageReadyContext'
 import { EASE } from '@/lib/animations'
+import { adaptiveBlur } from '@/lib/deviceCapability'
 
 interface RevealProps extends HTMLAttributes<HTMLDivElement> {
   delay?: number
@@ -37,11 +38,11 @@ export function Reveal({
       ref={ref}
       className={className}
       style={style}
-      initial={{ opacity: 0, y, x, filter: `blur(${blur}px)` }}
+      initial={{ opacity: 0, y, x, filter: adaptiveBlur(blur) }}
       animate={
         triggered
-          ? { opacity: 1, y: 0, x: 0, filter: 'blur(0px)', transition: { duration, delay, ease: EASE } }
-          : { opacity: 0, y, x, filter: `blur(${blur}px)` }
+          ? { opacity: 1, y: 0, x: 0, filter: adaptiveBlur(0), transition: { duration, delay, ease: EASE } }
+          : { opacity: 0, y, x, filter: adaptiveBlur(blur) }
       }
     >
       {children}

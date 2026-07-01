@@ -16,6 +16,7 @@ import {
   LayoutGrid,
 } from "lucide-react";
 import { EASE } from "@/lib/animations";
+import { adaptiveBlur, isLowEndDevice } from "@/lib/deviceCapability";
 import { PillButton } from "@/components/ui/PillButton";
 import { usePageReady } from "@/context/PageReadyContext";
 import { useBooking } from "@/context/BookingContext";
@@ -42,21 +43,21 @@ export function HeroSection() {
   );
 
   const wordVariants = {
-    hidden: { y: "110%", filter: "blur(8px)", opacity: 0 },
+    hidden: { y: "110%", filter: adaptiveBlur(8), opacity: 0 },
     visible: (i: number) => ({
       y: 0,
-      filter: "blur(0px)",
+      filter: adaptiveBlur(0),
       opacity: 1,
       transition: { duration: 0.7, delay: 0.2 + i * 0.09, ease: EASE },
     }),
   };
 
   const fadeUp = {
-    hidden: { opacity: 0, y: 16, filter: "blur(5px)" },
+    hidden: { opacity: 0, y: 16, filter: adaptiveBlur(5) },
     visible: (d: number) => ({
       opacity: 1,
       y: 0,
-      filter: "blur(0px)",
+      filter: adaptiveBlur(0),
       transition: { duration: 0.6, delay: d, ease: EASE },
     }),
   };
@@ -234,9 +235,8 @@ export function HeroSection() {
           className="flex items-center gap-1.5 rounded-xl px-2.5 py-2"
           style={{
             border: "1px solid rgba(0,172,193,0.45)",
-            background: "rgba(0,172,193,0.1)",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
+            background: isLowEndDevice ? "rgba(6,32,38,0.85)" : "rgba(0,172,193,0.1)",
+            ...(isLowEndDevice ? {} : { backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }),
           }}
           variants={{
             hidden: { opacity: 0, x: 14 },
@@ -323,10 +323,9 @@ export function HeroSection() {
         <motion.div
           className="hidden lg:inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6"
           style={{
-            background: "rgba(255,255,255,0.06)",
+            background: isLowEndDevice ? "rgba(10,20,36,0.85)" : "rgba(255,255,255,0.06)",
             border: "1px solid rgba(255,255,255,0.14)",
-            backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
+            ...(isLowEndDevice ? {} : { backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }),
             width: "fit-content",
           }}
           custom={0.05}
@@ -513,10 +512,9 @@ export function HeroSection() {
           <div
             className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl flex-1 min-w-0 lg:flex-none lg:min-w-0"
             style={{
-              background: "rgba(255,255,255,0.06)",
+              background: isLowEndDevice ? "rgba(10,20,36,0.85)" : "rgba(255,255,255,0.06)",
               border: "1px solid rgba(255,255,255,0.12)",
-              backdropFilter: "blur(20px)",
-              WebkitBackdropFilter: "blur(20px)",
+              ...(isLowEndDevice ? {} : { backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)" }),
             }}
           >
             <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 ring-1 ring-white/20">
@@ -554,10 +552,9 @@ export function HeroSection() {
             href="tel:+51972630736"
             className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl shrink-0"
             style={{
-              background: "rgba(229,57,53,0.16)",
+              background: isLowEndDevice ? "rgba(58,15,13,0.85)" : "rgba(229,57,53,0.16)",
               border: "1px solid rgba(229,57,53,0.32)",
-              backdropFilter: "blur(16px)",
-              WebkitBackdropFilter: "blur(16px)",
+              ...(isLowEndDevice ? {} : { backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }),
             }}
           >
             <Phone size={15} style={{ color: "#e53935" }} />

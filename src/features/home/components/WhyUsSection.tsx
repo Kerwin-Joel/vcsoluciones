@@ -4,6 +4,7 @@ import { SectionHeader } from '@/components/ui/SectionHeader'
 import { PillButton } from '@/components/ui/PillButton'
 import { Reveal } from '@/components/ui/Reveal'
 import { EASE } from '@/lib/animations'
+import { adaptiveBlur } from '@/lib/deviceCapability'
 import { useBooking } from '@/context/BookingContext'
 
 const EMILIO_PHOTO = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&auto=format&fit=crop&crop=face&q=80'
@@ -73,8 +74,8 @@ export function WhyUsSection() {
             <motion.div
               className="absolute top-6 right-0 translate-x-[22%] w-[48%] rounded-2xl overflow-hidden shadow-2xl"
               style={{ border: '3px solid #fff' }}
-              initial={{ opacity: 0, x: 20, filter: 'blur(8px)' }}
-              whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+              initial={{ opacity: 0, x: 20, filter: adaptiveBlur(8) }}
+              whileInView={{ opacity: 1, x: 0, filter: adaptiveBlur(0) }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.65, delay: 0.2, ease: EASE }}
             >

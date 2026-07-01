@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { useBooking } from "@/context/BookingContext";
 import { EASE } from "@/lib/animations";
+import { isLowEndDevice } from "@/lib/deviceCapability";
 
 const navLinks = [
   { label: "Inicio", href: "/" },
@@ -129,12 +130,12 @@ export function Header() {
           animate={
             scrolled
               ? {
-                  backdropFilter: "blur(20px)",
-                  backgroundColor: "rgba(255,255,255,0.76)",
+                  backdropFilter: isLowEndDevice ? "none" : "blur(20px)",
+                  backgroundColor: isLowEndDevice ? "rgba(255,255,255,0.96)" : "rgba(255,255,255,0.76)",
                   boxShadow: "0 2px 28px rgba(0,0,0,0.07)",
                 }
               : {
-                  backdropFilter: "blur(0px)",
+                  backdropFilter: "none",
                   backgroundColor: "rgba(255,255,255,1)",
                   boxShadow: "0 1px 0 rgba(0,0,0,0.06)",
                 }

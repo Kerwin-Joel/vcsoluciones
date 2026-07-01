@@ -4,6 +4,7 @@ import { Quote } from 'lucide-react'
 import { testimonials } from '@/data/testimonials'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import { Reveal } from '@/components/ui/Reveal'
+import { adaptiveBlur } from '@/lib/deviceCapability'
 
 const APPLE_EASE = [0.16, 1, 0.3, 1] as const
 const AUTOPLAY_MS = 6500
@@ -11,9 +12,9 @@ const SWIPE_DISTANCE = 60
 const SWIPE_VELOCITY = 350
 
 const variants: Variants = {
-  enter: (dir: number) => ({ opacity: 0, x: dir * 36, scale: 0.985, filter: 'blur(10px)' }),
-  center: { opacity: 1, x: 0, scale: 1, filter: 'blur(0px)', transition: { duration: 0.7, ease: APPLE_EASE } },
-  exit: (dir: number) => ({ opacity: 0, x: dir * -36, scale: 0.985, filter: 'blur(8px)', transition: { duration: 0.45, ease: APPLE_EASE } }),
+  enter: (dir: number) => ({ opacity: 0, x: dir * 36, scale: 0.985, filter: adaptiveBlur(10) }),
+  center: { opacity: 1, x: 0, scale: 1, filter: adaptiveBlur(0), transition: { duration: 0.7, ease: APPLE_EASE } },
+  exit: (dir: number) => ({ opacity: 0, x: dir * -36, scale: 0.985, filter: adaptiveBlur(8), transition: { duration: 0.45, ease: APPLE_EASE } }),
 }
 
 export function TestimonialsSection() {

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { isLowEndDevice, adaptiveBlur } from '@/lib/deviceCapability'
 import {
   X, ChevronLeft, ChevronRight, Check,
   User, Phone, Mail,
@@ -52,13 +53,13 @@ type Setter = (key: keyof FormData) => (val: string) => void
 /* ─── Step transition — fade only, no x movement ────────── */
 
 const stepVariants = {
-  enter: { opacity: 0, y: 10, filter: 'blur(5px)' },
+  enter: { opacity: 0, y: 10, filter: adaptiveBlur(5) },
   center: {
-    opacity: 1, y: 0, filter: 'blur(0px)',
+    opacity: 1, y: 0, filter: adaptiveBlur(0),
     transition: { duration: 0.48, ease: EASE_OUT },
   },
   exit: {
-    opacity: 0, y: -6, filter: 'blur(3px)',
+    opacity: 0, y: -6, filter: adaptiveBlur(3),
     transition: { duration: 0.28, ease: EASE_IN },
   },
 }
@@ -175,9 +176,9 @@ function MiniCalendar({ selected, onChange }: { selected: string; onChange: (id:
   const canPrev = view.year > now.getFullYear() || view.month > now.getMonth()
 
   const calVariants = {
-    enter: (d: number) => ({ opacity: 0, x: d * 14, filter: 'blur(3px)' }),
-    center: { opacity: 1, x: 0, filter: 'blur(0px)', transition: { duration: 0.3, ease: EASE_OUT } },
-    exit:  (d: number) => ({ opacity: 0, x: d * -14, filter: 'blur(3px)', transition: { duration: 0.2, ease: EASE_IN } }),
+    enter: (d: number) => ({ opacity: 0, x: d * 14, filter: adaptiveBlur(3) }),
+    center: { opacity: 1, x: 0, filter: adaptiveBlur(0), transition: { duration: 0.3, ease: EASE_OUT } },
+    exit:  (d: number) => ({ opacity: 0, x: d * -14, filter: adaptiveBlur(3), transition: { duration: 0.2, ease: EASE_IN } }),
   }
 
   return (
@@ -788,7 +789,10 @@ export function BookingModal({ open, onClose }: { open: boolean; onClose: () => 
           {/* Backdrop */}
           <motion.div
             className="fixed inset-0 z-[100]"
-            style={{ background: 'rgba(4,10,22,0.80)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)' }}
+            style={isLowEndDevice
+              ? { background: 'rgba(4,10,22,0.92)' }
+              : { background: 'rgba(4,10,22,0.80)', backdropFilter: 'blur(14px)', WebkitBackdropFilter: 'blur(14px)' }
+            }
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

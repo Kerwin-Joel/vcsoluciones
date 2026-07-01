@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react'
 import { motion, useReducedMotion, useInView } from 'framer-motion'
 import { useCounter } from '@/hooks/useCounter'
 import { EASE } from '@/lib/animations'
+import { adaptiveBlur } from '@/lib/deviceCapability'
 
 const stats = [
   { value: 7,   suffix: '+', label: 'Años de experiencia',     desc: 'Fundada en Jaén, 2017',   lineColor: '#1a4b8c' },
@@ -36,8 +37,8 @@ function StatItem({ value, suffix, label, desc, lineColor, delay }: StatItemProp
     <motion.div
       ref={ref}
       className="min-w-0 cursor-default select-none"
-      initial={{ opacity: 0, y: 20, filter: 'blur(8px)' }}
-      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      initial={{ opacity: 0, y: 20, filter: adaptiveBlur(8) }}
+      whileInView={{ opacity: 1, y: 0, filter: adaptiveBlur(0) }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.65, delay, ease: EASE }}
       whileHover={{ y: -3, transition: { duration: 0.22, ease: EASE } }}

@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { EASE } from "@/lib/animations";
+import { isLowEndDevice } from "@/lib/deviceCapability";
 
 export function WhatsAppFAB() {
   const [hovered, setHovered] = useState(false);
@@ -72,14 +73,22 @@ export function WhatsAppFAB() {
                 exit={{ opacity: 0, y: 6, scale: 0.94, x: 6 }}
                 transition={{ duration: 0.22, ease: EASE }}
                 className="rounded-2xl shadow-2xl px-4 py-3 text-sm font-semibold whitespace-nowrap border"
-                style={{
-                  background: "rgba(255,255,255,0.92)",
-                  backdropFilter: "blur(16px)",
-                  WebkitBackdropFilter: "blur(16px)",
-                  border: "1px solid rgba(0,0,0,0.08)",
-                  color: "#111827",
-                  boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
-                }}
+                style={isLowEndDevice
+                  ? {
+                      background: "rgba(255,255,255,0.98)",
+                      border: "1px solid rgba(0,0,0,0.08)",
+                      color: "#111827",
+                      boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
+                    }
+                  : {
+                      background: "rgba(255,255,255,0.92)",
+                      backdropFilter: "blur(16px)",
+                      WebkitBackdropFilter: "blur(16px)",
+                      border: "1px solid rgba(0,0,0,0.08)",
+                      color: "#111827",
+                      boxShadow: "0 8px 32px rgba(0,0,0,0.12)",
+                    }
+                }
               >
                 Escríbenos, te respondemos rápido 👋
               </motion.div>

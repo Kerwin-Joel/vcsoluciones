@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { usePageReady } from '@/context/PageReadyContext'
 import { EASE } from '@/lib/animations'
+import { adaptiveBlur } from '@/lib/deviceCapability'
 
 export function PageOverlay() {
   const isReady = usePageReady()
@@ -31,8 +32,8 @@ export function PageOverlay() {
             {/* Logo */}
             <motion.div
               className="flex items-center gap-3"
-              initial={{ opacity: 0, y: 14, filter: 'blur(8px)' }}
-              animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={{ opacity: 0, y: 14, filter: adaptiveBlur(8) }}
+              animate={{ opacity: 1, y: 0, filter: adaptiveBlur(0) }}
               transition={{ duration: 0.5, ease: EASE }}
             >
               <div

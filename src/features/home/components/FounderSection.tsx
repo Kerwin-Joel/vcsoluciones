@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { CheckCircle, Star, ArrowUpRight, MapPin, Users } from 'lucide-react'
 import { EASE } from '@/lib/animations'
+import { isLowEndDevice } from '@/lib/deviceCapability'
 import { Reveal } from '@/components/ui/Reveal'
 import { useBooking } from '@/context/BookingContext'
 const FOUNDER_PHOTO =
@@ -56,9 +57,8 @@ export function FounderSection() {
                 <motion.div
                   className="rounded-2xl p-4"
                   style={{
-                    background: 'rgba(255,255,255,0.1)',
-                    backdropFilter: 'blur(20px)',
-                    WebkitBackdropFilter: 'blur(20px)',
+                    background: isLowEndDevice ? 'rgba(20,25,35,0.72)' : 'rgba(255,255,255,0.1)',
+                    ...(isLowEndDevice ? {} : { backdropFilter: 'blur(20px)', WebkitBackdropFilter: 'blur(20px)' }),
                     border: '1px solid rgba(255,255,255,0.18)',
                   }}
                   initial={{ opacity: 0, y: 16 }}
