@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&display=swap');
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────────────────── */
+:root {
+  /* Brand — VC Soluciones logo palette */
+  --color-navy:        #1a4b8c;
+  --color-navy-dark:   #0f2d5c;
+  --color-navy-light:  #2563cc;
+  --color-red:         #e53935;
+  --color-red-dark:    #c62828;
+  --color-cyan:        #00acc1;
+  --color-cyan-light:  #00d4f0;
+
+  /* Neutrals */
+  --color-noir:        #0d0f14;
+  --color-dark:        #111827;
+  --color-gray-900:    #1f2937;
+  --color-gray-700:    #374151;
+  --color-gray-500:    #6b7280;
+  --color-gray-300:    #d1d5db;
+  --color-gray-100:    #f3f4f6;
+  --color-white:       #ffffff;
+
+  /* Semantic */
+  --color-primary:     var(--color-navy);
+  --color-accent:      var(--color-red);
+  --color-highlight:   var(--color-cyan);
+  --color-bg:          var(--color-white);
+  --color-bg-dark:     var(--color-noir);
+  --color-text:        var(--color-dark);
+  --color-text-muted:  var(--color-gray-500);
+
+  /* Typography */
+  --font-sans:   'DM Sans', system-ui, sans-serif;
+  --font-display: 'DM Sans', sans-serif;
+
+  /* Spacing scale */
+  --section-py: clamp(4rem, 8vw, 7rem);
+  --container:  min(90rem, 100% - 2 * clamp(1rem, 4vw, 4rem));
+
+  /* Shadows */
+  --shadow-card: 0 4px 24px rgba(0,0,0,0.08);
+  --shadow-hover: 0 16px 48px rgba(26,75,140,0.18);
+  --shadow-red:   0 8px 32px rgba(229,57,53,0.25);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in:  cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 200ms;
+  --duration-base: 350ms;
+  --duration-slow: 600ms;
+
+  /* Border radius */
+  --radius-sm:  6px;
+  --radius-md:  12px;
+  --radius-lg:  20px;
+  --radius-xl:  32px;
+}
+
+/* ─── Base Reset ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── Typography ─────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Utilities ──────────────────────────────────────────────── */
+.container {
+  width: var(--container);
+  margin-inline: auto;
+}
+
+.section-py {
+  padding-block: var(--section-py);
+}
+
+/* Section label */
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-red);
+  margin-bottom: 1rem;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: var(--color-red);
+}
+
+/* ─── Page Loader ────────────────────────────────────────────── */
+.page-loader {
+  position: fixed;
+  inset: 0;
+  background: var(--color-navy-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.loader-bar {
+  width: 200px;
+  height: 3px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 99px;
+  overflow: hidden;
+}
+.loader-bar::after {
+  content: '';
+  display: block;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, var(--color-cyan), var(--color-red));
+  border-radius: 99px;
+  animation: loading 1s var(--ease-inout) infinite;
+}
+@keyframes loading {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(350%); }
+}
+
+/* ─── Liquid Glass ───────────────────────────────────────────── */
+
+/* Dark glass — usado sobre fondos oscuros (hero, servicios) */
+.glass-dark {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(36px) saturate(200%);
+  -webkit-backdrop-filter: blur(36px) saturate(200%);
+  box-shadow:
+    0 4px 32px rgba(0, 0, 0, 0.32),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.16),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Light glass — usado sobre fondos claros */
+.glass-light {
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.06),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.92),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* Navy glass — usado sobre gradientes navy */
+.glass-navy {
+  background: rgba(15, 45, 92, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Liquid glass premium — máximo efecto, para cards hero y CTA */
+.glass-liquid {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.07) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(48px) saturate(240%) brightness(1.02);
+  -webkit-backdrop-filter: blur(48px) saturate(240%) brightness(1.02);
+  box-shadow:
+    0 8px 48px rgba(0, 0, 0, 0.42),
+    inset 0 2px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+    inset 1px 0 0 rgba(255, 255, 255, 0.08),
+    inset -1px 0 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Ultra glass — para service cards sobre fondo oscuro con foto */
+.glass-card-dark {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(13, 25, 41, 0.88) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  backdrop-filter: blur(32px) saturate(200%);
+  -webkit-backdrop-filter: blur(32px) saturate(200%);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.4),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* Bento cell base */
+.bento-cell {
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ─── Rotating badge ─────────────────────────────────────────── */
+@keyframes spin-cw {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.rotating-badge {
+  animation: spin-cw 10s linear infinite;
+}
+
+/* ─── Ticker / Marquee ───────────────────────────────────────── */
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 28s linear infinite;
+}
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--color-navy); border-radius: 99px; }
+
+/* ─── Selection ──────────────────────────────────────────────── */
+::selection {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+/* ─── Focus Ring ─────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
