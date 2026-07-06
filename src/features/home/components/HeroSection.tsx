@@ -20,8 +20,7 @@ import { adaptiveBlur, isLowEndDevice } from "@/lib/deviceCapability";
 import { PillButton } from "@/components/ui/PillButton";
 import { usePageReady } from "@/context/PageReadyContext";
 import { useBooking } from "@/context/BookingContext";
-const EMILIO_PHOTO =
-  "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=1200&h=1400&auto=format&fit=crop&q=85";
+const EMILIO_PHOTO = "/images/emilio-hero.avif";
 
 const headlineWords = ["Expertos", "en", "Contabilidad", "y", "Tributación"];
 
@@ -84,7 +83,7 @@ export function HeroSection() {
           alt=""
           aria-hidden="true"
           className="w-full h-full object-cover"
-          style={{ objectPosition: "center 12%", y: photoY }}
+          style={{ objectPosition: "center 30%", y: photoY }}
           initial={{ scale: 1.04 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
@@ -230,13 +229,20 @@ export function HeroSection() {
           </div>
         </motion.div>
 
-        {/* CPC Certificado */}
+        {/* Contador Colegiado */}
         <motion.div
           className="flex items-center gap-1.5 rounded-xl px-2.5 py-2"
           style={{
             border: "1px solid rgba(0,172,193,0.45)",
-            background: isLowEndDevice ? "rgba(6,32,38,0.85)" : "rgba(0,172,193,0.1)",
-            ...(isLowEndDevice ? {} : { backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }),
+            background: isLowEndDevice
+              ? "rgba(6,32,38,0.85)"
+              : "rgba(0,172,193,0.1)",
+            ...(isLowEndDevice
+              ? {}
+              : {
+                  backdropFilter: "blur(12px)",
+                  WebkitBackdropFilter: "blur(12px)",
+                }),
           }}
           variants={{
             hidden: { opacity: 0, x: 14 },
@@ -255,7 +261,7 @@ export function HeroSection() {
           </div>
           <div>
             <p className="text-[9px] font-bold leading-none text-white">
-              CPC Certificado
+              Contador Colegiado
             </p>
           </div>
         </motion.div>
@@ -323,9 +329,16 @@ export function HeroSection() {
         <motion.div
           className="hidden lg:inline-flex items-center gap-2 rounded-full px-4 py-2 mb-6"
           style={{
-            background: isLowEndDevice ? "rgba(10,20,36,0.85)" : "rgba(255,255,255,0.06)",
+            background: isLowEndDevice
+              ? "rgba(10,20,36,0.85)"
+              : "rgba(255,255,255,0.06)",
             border: "1px solid rgba(255,255,255,0.14)",
-            ...(isLowEndDevice ? {} : { backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)" }),
+            ...(isLowEndDevice
+              ? {}
+              : {
+                  backdropFilter: "blur(12px)",
+                  WebkitBackdropFilter: "blur(12px)",
+                }),
             width: "fit-content",
           }}
           custom={0.05}
@@ -380,7 +393,11 @@ export function HeroSection() {
                           "linear-gradient(90deg,#00acc1,transparent)",
                       }}
                       initial={{ width: "0%" }}
-                      animate={isReady ? { width: ["0%", "100%", "100%", "0%", "0%"] } : { width: "0%" }}
+                      animate={
+                        isReady
+                          ? { width: ["0%", "100%", "100%", "0%", "0%"] }
+                          : { width: "0%" }
+                      }
                       transition={{
                         delay: 0.9,
                         duration: 3,
@@ -478,7 +495,7 @@ export function HeroSection() {
           <div className="flex items-center gap-3">
             <div className="flex-1 min-w-0">
               <p className="text-white text-xs font-bold truncate">
-                Emilio Vílchez C.
+                Emilio Vásquez Cabrera
               </p>
               <p
                 className="text-[10px] truncate"
@@ -512,21 +529,28 @@ export function HeroSection() {
           <div
             className="flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl flex-1 min-w-0 lg:flex-none lg:min-w-0"
             style={{
-              background: isLowEndDevice ? "rgba(10,20,36,0.85)" : "rgba(255,255,255,0.06)",
+              background: isLowEndDevice
+                ? "rgba(10,20,36,0.85)"
+                : "rgba(255,255,255,0.06)",
               border: "1px solid rgba(255,255,255,0.12)",
-              ...(isLowEndDevice ? {} : { backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)" }),
+              ...(isLowEndDevice
+                ? {}
+                : {
+                    backdropFilter: "blur(20px)",
+                    WebkitBackdropFilter: "blur(20px)",
+                  }),
             }}
           >
             <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 ring-1 ring-white/20">
               <img
                 src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&auto=format&fit=crop&crop=face&q=80"
-                alt="Emilio Vílchez"
+                alt="Emilio Vásquez Cabrera"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="min-w-0">
               <p className="text-xs font-bold text-white leading-none truncate">
-                Emilio Vílchez C.
+                Emilio Vásquez Cabrera
               </p>
               <div className="flex items-center gap-2 mt-0.5">
                 {[
@@ -552,9 +576,16 @@ export function HeroSection() {
             href="tel:+51972630736"
             className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl shrink-0"
             style={{
-              background: isLowEndDevice ? "rgba(58,15,13,0.85)" : "rgba(229,57,53,0.16)",
+              background: isLowEndDevice
+                ? "rgba(58,15,13,0.85)"
+                : "rgba(229,57,53,0.16)",
               border: "1px solid rgba(229,57,53,0.32)",
-              ...(isLowEndDevice ? {} : { backdropFilter: "blur(16px)", WebkitBackdropFilter: "blur(16px)" }),
+              ...(isLowEndDevice
+                ? {}
+                : {
+                    backdropFilter: "blur(16px)",
+                    WebkitBackdropFilter: "blur(16px)",
+                  }),
             }}
           >
             <Phone size={15} style={{ color: "#e53935" }} />
