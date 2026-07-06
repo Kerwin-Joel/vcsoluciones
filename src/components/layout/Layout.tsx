@@ -34,6 +34,7 @@ export function Layout() {
             key={location.pathname}
             {...pageTransition}
             className="flex-1"
+            style={{ minHeight: "calc(100svh - 4.375rem)" }}
           >
             <Outlet />
           </motion.main>
