@@ -148,14 +148,13 @@ export function Header() {
           <nav className="flex items-center justify-between h-[70px]">
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2.5 shrink-0">
-              <div
-                className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-extrabold text-sm shrink-0"
-                style={{
-                  background: "linear-gradient(135deg, #1a4b8c, #0f2d5c)",
-                }}
-              >
-                VC
-              </div>
+              <img
+                src="/favicon.svg"
+                alt="VC Soluciones Empresariales"
+                width="36"
+                height="36"
+                className="w-9 h-9 shrink-0"
+              />
               <div className="flex flex-col leading-none">
                 <span
                   className="text-base font-extrabold tracking-tight"
@@ -281,12 +280,13 @@ export function Header() {
             >
               <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
                 <div className="flex items-center gap-2">
-                  <div
-                    className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-extrabold text-xs"
-                    style={{ background: "#1a4b8c" }}
-                  >
-                    VC
-                  </div>
+                  <img
+                    src="/favicon.svg"
+                    alt="VC Soluciones Empresariales"
+                    width="32"
+                    height="32"
+                    className="w-8 h-8"
+                  />
                   <span
                     className="font-extrabold text-sm"
                     style={{ color: "#0f2d5c" }}
