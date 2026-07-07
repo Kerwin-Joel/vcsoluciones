@@ -131,7 +131,9 @@ export function Header() {
             scrolled
               ? {
                   backdropFilter: isLowEndDevice ? "none" : "blur(20px)",
-                  backgroundColor: isLowEndDevice ? "rgba(255,255,255,0.96)" : "rgba(255,255,255,0.76)",
+                  backgroundColor: isLowEndDevice
+                    ? "rgba(255,255,255,0.96)"
+                    : "rgba(255,255,255,0.76)",
                   boxShadow: "0 2px 28px rgba(0,0,0,0.07)",
                 }
               : {
@@ -149,7 +151,7 @@ export function Header() {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-2.5 shrink-0">
               <img
-                src="/favicon.svg"
+                src="/favicon2.svg"
                 alt="VC Soluciones Empresariales"
                 width="36"
                 height="36"
@@ -281,7 +283,7 @@ export function Header() {
               <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
                 <div className="flex items-center gap-2">
                   <img
-                    src="/favicon.svg"
+                    src="/favicon2.svg"
                     alt="VC Soluciones Empresariales"
                     width="32"
                     height="32"
@@ -348,7 +350,10 @@ export function Header() {
                   </span>
                 </div>
                 <motion.button
-                  onClick={() => { setMobileOpen(false); openModal(); }}
+                  onClick={() => {
+                    setMobileOpen(false);
+                    openModal();
+                  }}
                   className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl text-white text-sm font-bold"
                   style={{
                     background: "linear-gradient(135deg, #e53935, #c62828)",
