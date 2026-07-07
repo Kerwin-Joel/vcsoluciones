@@ -42,12 +42,13 @@ export function Footer() {
             {/* Logo + nombre */}
             <Reveal delay={0} y={28} blur={10} amount={0.15}>
               <div className="flex items-center gap-2.5 mb-5">
-                <div
-                  className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-extrabold text-sm"
-                  style={{ background: 'linear-gradient(135deg, #1a4b8c, #0f2d5c)' }}
-                >
-                  VC
-                </div>
+                <img
+                  src="/favicon2.svg"
+                  alt="VC Soluciones Empresariales"
+                  width="36"
+                  height="36"
+                  className="w-9 h-9 shrink-0"
+                />
                 <div>
                   <h3 className="text-lg font-extrabold text-white leading-none">
                     Soluciones<span style={{ color: '#e53935' }}> Empresariales</span>

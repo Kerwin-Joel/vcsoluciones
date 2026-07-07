@@ -36,15 +36,13 @@ export function PageOverlay() {
               animate={{ opacity: 1, y: 0, filter: adaptiveBlur(0) }}
               transition={{ duration: 0.5, ease: EASE }}
             >
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center font-extrabold text-white text-base"
-                style={{
-                  background: 'linear-gradient(135deg, #1a4b8c, #0f2d5c)',
-                  boxShadow: '0 8px 24px rgba(26,75,140,0.45)',
-                }}
-              >
-                VC
-              </div>
+              <img
+                src="/favicon2.svg"
+                alt="VC Soluciones Empresariales"
+                width="48"
+                height="48"
+                className="w-12 h-12 shrink-0"
+              />
               <div className="leading-none">
                 <p className="font-extrabold text-white text-lg leading-tight">Soluciones</p>
                 <p className="font-extrabold text-lg leading-tight" style={{ color: '#e53935' }}>
