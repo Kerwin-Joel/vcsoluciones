@@ -543,9 +543,9 @@ export function HeroSection() {
           >
             <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 ring-1 ring-white/20">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&auto=format&fit=crop&crop=face&q=80"
+                src="/images/emilio-testimonio.avif"
                 alt="Emilio Vásquez Cabrera"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
               />
             </div>
             <div className="min-w-0">
